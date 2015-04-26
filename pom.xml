@@ -40,6 +40,18 @@
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
+			<resource>
+				<directory>config</directory>
+				<targetPath>${project.build.directory}/config/</targetPath>
+			</resource>
+			<resource>
+				<directory></directory>
+				<targetPath>${project.build.directory}</targetPath>
+				<includes>
+				<include>*.bat</include>
+				<include>*.sh</include>
+				</includes>
+			</resource>
 		</resources>
 
 		<plugins>
@@ -103,6 +115,25 @@
 							<overWriteIfNewer>true</overWriteIfNewer>
 							<useBaseVersion>false</useBaseVersion>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- create zip archive of project plugin -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptors>
+						<descriptor>zip.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- append to the packaging phase. -->
+						<goals>
+							<goal>single</goal> <!-- goals == mojos -->
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
