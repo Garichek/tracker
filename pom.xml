@@ -12,9 +12,21 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
+		<gson.version>2.3.1</gson.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -48,8 +60,8 @@
 				<directory></directory>
 				<targetPath>${project.build.directory}</targetPath>
 				<includes>
-				<include>*.bat</include>
-				<include>*.sh</include>
+					<include>*.bat</include>
+					<include>*.sh</include>
 				</includes>
 			</resource>
 		</resources>

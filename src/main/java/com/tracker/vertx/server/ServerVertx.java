@@ -9,6 +9,8 @@ import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.net.NetServer;
 import org.vertx.java.core.net.NetSocket;
 
+import com.tracker.server.settings.ServerSettings;
+import com.tracker.server.settings.SettingsFactory;
 import com.tracker.utils.Logger;
 import com.tracker.utils.LoggerUtil;
 
@@ -24,7 +26,10 @@ public class ServerVertx {
 
 	public ServerVertx() {
 
-		
+		ServerSettings settings = SettingsFactory.getInstance();
+		ipAdress = settings.getHost();
+		port = settings.getPort();
+
 		vertX = VertxFactory.newVertx();
 		server = vertX.createNetServer();
 		server.setTCPKeepAlive(true);
@@ -35,8 +40,8 @@ public class ServerVertx {
 				sock.dataHandler(new Handler<Buffer>() {
 					public void handle(Buffer buffer) {
 						LOGGER.info("I received packet size = %s  bytes", buffer.length());
-						LOGGER.info("Packet data in bytes = %s ",Arrays.toString(buffer.getBytes()));
-						LOGGER.info("Packet data in string = %s ",buffer.toString());
+						LOGGER.info("Packet data in bytes = %s ", Arrays.toString(buffer.getBytes()));
+						LOGGER.info("Packet data in string = %s ", buffer.toString());
 					}
 				});
 			}
